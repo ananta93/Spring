@@ -1,0 +1,18 @@
+<!--Spring Beans XML doc-->
+<!--mybeans.xml-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+        xmlns="http://www.springframework.org/schema/beans"
+		xmlns:p="http://www.springframework.org/schema/p">
+	
+	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource" p:username="scott" p:password="tiger" p:url="jdbc:oracle:thin:@localhost:1521:XE" p:driverClassName="oracle.jdbc.driver.OracleDriver"/>
+	
+	<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="ds"/>
+	</bean>
+	
+	<bean id="edao" class="com.dao.EmployeeDAO">
+		<constructor-arg ref="jt"/>
+	</bean>
+</beans>
